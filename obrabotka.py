@@ -23,6 +23,9 @@ def processing(text: str, flag: bool, number: float):
 
     return squares_dict
 
-processing("Привет", True, 123321)
 konec = processing("Пока", False, 321123)
-print(konec)
+propusk = {}
+for key, value in konec.items():
+    if key % 2 == 0:
+        propusk[key] = value
+print(propusk)
