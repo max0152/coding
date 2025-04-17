@@ -2,7 +2,7 @@ def processing(text: str, flag: bool, number: float):
     if not text:
         raise ValueError("Поле 'text' нельзя оставить пустым")
 
-    squares = []
+    squares_dict = []
 
     for i in range(int(number) + 1):
         if i == 4:
@@ -11,17 +11,17 @@ def processing(text: str, flag: bool, number: float):
             break
 
         square = i ** 2
-        squares.append(square)
+        squares_dict[i] = square
         print(square)
 
         if square > 50:
             print(f"Квадрат числа {i} больше 50")
         elif 20 <= square <= 50:
             print(f"Квадрат числа {i} больше или равен 20 и меньше или равен 50")
-        else:  # square < 20
+        else:  
             print(f"Квадрат числа {i} меньше 20")
 
-    return squares
+    return squares_dict
 
 processing("Привет", True, 123321)
 konec = processing("Пока", False, 321123)
