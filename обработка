@@ -1,3 +1,4 @@
 `def processing(text: str, flag: bool, number: float):
-    pass
+    for i in range(int(number) + 1):
+        print(i ** 2)
 processing("Привет", True, 123321)`
