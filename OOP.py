@@ -6,6 +6,33 @@ class Book:
 
     def get_info(self):
         return f"'{self.title}' автор {self.author}, год издания: {self.year}"
+class BankAccount:
+    def __init__(self, number, balance=0):
+        self.__number = number
+        self.__balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Пополнение на {amount}. Текущий баланс: {self.__balance}")
+        else:
+            print("Сумма для пополнения должна быть положительной.")
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if amount <= self.__balance:
+                self.__balance -= amount
+                print(f"Снятие {amount}. Остаток на счёте: {self.__balance}")
+            else:
+                print("Недостаточно средств.")
+        else:
+            print("Сумма для снятия должна быть положительной.")
+
+    def get_balance(self):
+        return self.__balance
+
+    def get_number(self):
+        return self.__number
 
 book1 = Book("Война и мир", "Лев Толстой", 1869)
 book2 = Book("Преступление и наказание", "Федор Достоевский", 1866)
@@ -14,3 +41,22 @@ book3 = Book("Мастер и Маргарита", "Михаил Булгако�
 print(book1.get_info())
 print(book2.get_info())
 print(book3.get_info())
+
+account = BankAccount("1234567890", 1000)
+
+try:
+    print(f"Номер счёта: {account.__number}")
+except AttributeError:
+    pass
+
+try:
+    print(f"Баланс: {account.__balance}")
+except AttributeError:
+    pass
+
+print(f"Номер счёта: {account.get_number()}")
+print(f"Баланс: {account.get_balance()}")
+
+account.deposit(500)
+account.withdraw(300)
+account.withdraw(2000)
