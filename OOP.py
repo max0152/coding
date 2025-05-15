@@ -33,6 +33,20 @@ class BankAccount:
 
     def get_number(self):
         return self.__number
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        print(f"{self.name} издает звук.")
+
+class Dog(Animal):
+    def make_sound(self):
+        print(f"{self.name} говорит: Гав-гав!")
+
+class Cat(Animal):
+    def make_sound(self):
+        print(f"{self.name} говорит: Мяу!")
 
 book1 = Book("Война и мир", "Лев Толстой", 1869)
 book2 = Book("Преступление и наказание", "Федор Достоевский", 1866)
@@ -60,3 +74,12 @@ print(f"Баланс: {account.get_balance()}")
 account.deposit(500)
 account.withdraw(300)
 account.withdraw(2000)
+
+animals = [
+    Dog("Бобик"),
+    Cat("Мурка"),
+    Animal("Животное")
+]
+
+for animal in animals:
+    animal.make_sound()
