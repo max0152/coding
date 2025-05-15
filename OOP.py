@@ -1,3 +1,4 @@
+import math
 class Book:
     def __init__(self, title, author, year):
         self.title = title
@@ -48,6 +49,24 @@ class Cat(Animal):
     def make_sound(self):
         print(f"{self.name} говорит: Мяу!")
 
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return math.pi * (self.radius ** 2)
+
+def print_area(shape):
+    print(f"Площадь: {shape.area()}")
+
 book1 = Book("Война и мир", "Лев Толстой", 1869)
 book2 = Book("Преступление и наказание", "Федор Достоевский", 1866)
 book3 = Book("Мастер и Маргарита", "Михаил Булгаков", 1967)
@@ -83,3 +102,12 @@ animals = [
 
 for animal in animals:
     animal.make_sound()
+
+rect = Rectangle(4, 5)
+circle = Circle(3)
+
+print("Прямоугольник:")
+print_area(rect)
+
+print("Круг:")
+print_area(circle)
