@@ -6,8 +6,8 @@ class Animal:
         self.name = name
         self.species = species
         self.age = age
-    def __str__(self):
-        return f"имя {self.name} \nразновидность {self.species} \nвозраст {self.age}"
+    def display_info(self):
+        return f"имя: {self.name} \nразновидность: {self.species} \nвозраст: {self.age}"
         
 cat = Animal("barsik", "manchkin", 4)
-print(cat)
+print(cat.display_info())
