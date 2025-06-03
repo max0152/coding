@@ -44,6 +44,17 @@ class shelter:
                 print(animal.display_info())
                 print()
                 
+    def remove_animal_by_name(self, name):
+        found = False
+        for animal in self.animals:
+            if animal.name == name:
+                self.animals.remove(animal)
+                print(f"Животное с именем '{name}' удалено.")
+                found = True
+                break 
+        if not found:
+            print(f"Животное '{name}' не найдено.")   
+            
 shelter = shelter()
 cat = Animal("barsik", "manchkin", 4)
 cat = Animal("barsik", "manchkin", 4)
@@ -53,6 +64,8 @@ shelter.add_animal(cat)
 shelter.add_animal(dog)
 shelter.add_animal(bird)
 shelter.show_animals()
+shelter.remove_animal_by_name("bobik")
+shelter.remove_animal_by_name("morphling")
 print("поиск по виду 'manchkin':")
 shelter.find_by_species("manchkin")
 print("Доступ к атрибутам через методы:")
