@@ -26,7 +26,15 @@ class shelter:
             for animal in self.animals:
                 print(animal.display_info())
                 print()
-        
+    def find_by_species(self, species_name):
+        poisk_animals = [animal for animal in self.animals if animal.species == species_name]
+        if not poisk_animals:
+            print(f"Животных вида '{species_name}' не найдено.")
+        else:
+            for animal in poisk_animals:
+                print(animal.display_info())
+                print()
+                
 shelter = shelter()
 cat = Animal("barsik", "manchkin", 4)
 cat = Animal("barsik", "manchkin", 4)
@@ -36,3 +44,5 @@ shelter.add_animal(cat)
 shelter.add_animal(dog)
 shelter.add_animal(bird)
 shelter.show_animals()
+print("поиск по виду 'manchkin':")
+shelter.find_by_species("manchkin")
