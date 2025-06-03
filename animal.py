@@ -10,7 +10,16 @@ class Animal:
         
     def display_info(self):
         return f"имя: {self.name} \nразновидность: {self.species} \nвозраст: {self.age}"
-
+        
+    def get_name(self):
+        return self.__name
+        
+    def get_species(self):
+        return self.__species
+        
+    def get_age(self):
+        return self.__age
+        
 class shelter:  
     
     def  __init__(self):
@@ -46,3 +55,6 @@ shelter.add_animal(bird)
 shelter.show_animals()
 print("поиск по виду 'manchkin':")
 shelter.find_by_species("manchkin")
+print("Доступ к атрибутам через методы:")
+for animal in shelter.animals:
+    print(f"Имя: {animal.get_name()}")
