@@ -12,8 +12,12 @@ class Animal:
         return f"имя: {self.name} \nразновидность: {self.species} \nвозраст: {self.age}"
 
 class shelter:  
+    
     def  __init__(self):
         self.animals = []
+        
+    def add_animal(self, animal):
+        self.animals.append(animal)
         
 cat = Animal("barsik", "manchkin", 4)
 print(cat.display_info())
