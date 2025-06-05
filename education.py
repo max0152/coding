@@ -39,8 +39,23 @@ class Group:
                 print(student.display_info())
                 print()
                 
-misha = Student("Michael", 123)
-print(misha.display_info())
-group = group()
-group.add_student(misha)
+    def find_by_name(self, name):
+        for student in self.students:
+            if student._name == name:
+                print(student.display_info())
+                return
+        print("Студент не найден")
+
+misha1 = Student("Michael", 123)
+kolya = Student("Nicolai", 124)
+misha2 = Student("Michail", 126)
+sveta = Student("Svetlana", 125)
+print(misha1.display_info())
+group = Group()
+group.add_student(misha1)
+group.add_student(misha2)
+group.add_student(kolya)
+group.add_student(sveta)
 group.show_students()
+print(misha1.get_name())
+group.find_by_name("Michael")
