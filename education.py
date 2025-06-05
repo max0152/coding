@@ -5,9 +5,19 @@ class Student:
     def __init__(self,name,student_id):
         self.name = name
         self.student_id = student_id
+        self.grades = []
         
     def display_info(self):
         return f"Имя: {self.name} \nайди: {self.student_id}"
+        
+    def add_grade(self, grade):
+        self.grades.append(grade)
+        
+    def get_average(self):
+        if not self.grades:
+            return 0
+        return sum(self.grades) / len(self.grades)
+        
 class Group:
     def __init__(self):
         self.students = []
