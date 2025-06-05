@@ -4,3 +4,8 @@ class Student:
     def __init__(self,name,student_id):
         self.name = name
         self.student_id = student_id
+    def display_info(self):
+        return f"Имя: {self.name} \nайди: {self.student_id}"
+
+misha = Student("Michael", 123)
+print(misha.display_info())
