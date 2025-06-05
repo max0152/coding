@@ -24,6 +24,19 @@ class Student:
     def get_grades(self):
         return self._grades
         
+    def is_eligible_for_award(self):
+        return False    
+        
+class HonorsStudent(Student):
+    def is_eligible_for_award(self):
+        return self.get_average() >= 90
+
+    def display_info(self):
+        info = super().display_info()
+        if isinstance(self, HonorsStudent) and self.is_eligible_for_award():
+            info += "\nПретендент на награду"
+        return info
+
 class Group:
     def __init__(self):
         self.students = []
@@ -69,3 +82,5 @@ group.add_student(sveta)
 group.show_students()
 group.remove_student_by_id(125)
 group.show_students()
+print(misha1.is_eligible_for_award())
+print(kolya.is_eligible_for_award())
