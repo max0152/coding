@@ -45,17 +45,27 @@ class Group:
                 print(student.display_info())
                 return
         print("Студент не найден")
-
+        
+    def remove_student_by_id(self, student_id):
+        found = False
+        for student in self.students:
+            if student._student_id == student_id:
+                self.students.remove(student)
+                print(f"студент с айди '{student_id}' удалён.")
+                found = True
+                break 
+        if not found:
+            print(f"Студент '{student_id}' не найдено.")
+            
 misha1 = Student("Michael", 123)
 kolya = Student("Nicolai", 124)
 misha2 = Student("Michail", 126)
 sveta = Student("Svetlana", 125)
-print(misha1.display_info())
 group = Group()
 group.add_student(misha1)
 group.add_student(misha2)
 group.add_student(kolya)
 group.add_student(sveta)
 group.show_students()
-print(misha1.get_name())
-group.find_by_name("Michael")
+group.remove_student_by_id(125)
+group.show_students()
