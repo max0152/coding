@@ -1,4 +1,5 @@
 import json
+filename = 'library.json'
 class Book:
     def __init__(self, name, author, year):
         self.name = name
@@ -49,14 +50,14 @@ class library:
                 print()
     def save(self):
         try:
-            with open('library.json', 'w', encoding='utf-8') as f:
+            with open(filename, 'w', encoding='utf-8') as f:
                 json.dump([book.to_dict() for book in self.books], f, ensure_ascii=False, indent=4)
         except Exception as e:
             print(f"Ошибка при сохранении: {e}")
     
     def load(self):
         try:
-            with open('library.json', 'r', encoding='utf-8') as f:
+            with open(filename, 'r', encoding='utf-8') as f:
                 data_list = json.load(f)
                 self.books = [Book.from_dict(data) for data in data_list]
         except FileNotFoundError:
