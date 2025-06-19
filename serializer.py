@@ -1,3 +1,4 @@
+import json
 class Book:
     def __init__(self, name, author, year):
         self.name = name
@@ -6,14 +7,27 @@ class Book:
 
     def get_info(self):
         return f'{self.name}, {self.author}, {self.year}'
+        
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "author": self.author,
+            "year": self.year
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data["name"], data["author"], data["year"])
 
 class library:
     def __init__(self):
         self.books = []
-
+        self.load()
+        
     def add_book(self, book):
         self.books.append(book)
-
+        self.save()
+        
     def delete_book(self, name):
         found = False
         for book in self.books:
@@ -24,7 +38,8 @@ class library:
                 break
         if not found:
             print(f"Книга '{name}' не найдена.")
-
+        self.save()
+        
     def show_books(self):
         if not self.books:
             print("Библиотека пуста")
@@ -32,14 +47,25 @@ class library:
             for book in self.books:
                 print(book.get_info())
                 print()
-
+    def save(self):
+        try:
+            with open('library.json', 'w', encoding='utf-8') as f:
+                json.dump([book.to_dict() for book in self.books], f, ensure_ascii=False, indent=4)
+        except Exception as e:
+            print(f"Ошибка при сохранении: {e}")
+    
+    def load(self):
+        try:
+            with open('library.json', 'r', encoding='utf-8') as f:
+                data_list = json.load(f)
+                self.books = [Book.from_dict(data) for data in data_list]
+        except FileNotFoundError:
+            self.books = []
+        except Exception as e:
+            print(f"Ошибка при загрузке: {e}")
+            self.books = []
+            
 lib = library()
-
-book1 = Book("Война и мир", "Лев Толстой", 1869)
-book2 = Book("Преступление и наказание", "Федор Достоевский", 1866)
-
-lib.add_book(book1)
-lib.add_book(book2)
 
 lib.show_books()
 
