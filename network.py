@@ -30,3 +30,14 @@ class Router:
             self.devices[packet.dst].receive(packet)
         else:
             print(f"Router: destination {packet.dst} not found.")
+router = Router()
+
+pc1 = Computer("PC1", router)
+pc2 = Computer("PC2", router)
+pc3 = Computer("PC3", router)
+pc4 = Computer("PC4", router)
+
+router.connect(pc1)
+router.connect(pc2)
+router.connect(pc3)
+router.connect(pc4)
