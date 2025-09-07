@@ -1,3 +1,4 @@
+import sys
 class Packet:
     def __init__(self, src, dst, data):
         self.src = src
@@ -15,6 +16,8 @@ class Computer:
         self.router.route(packet)
 
     def receive(self, packet):
+        if not packet.src or not packet.data:
+            sys.exit(f"Error: received incorrect packet on {self.mac}. src or data is empty.")
         print(f"Message for {self.mac} from {packet.src}: {packet.data}")
 
 
