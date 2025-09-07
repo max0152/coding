@@ -39,5 +39,10 @@ pc4 = Computer("PC4", router)
 
 router.connect(pc1)
 router.connect(pc2)
+
+pc1.send("PC3", "Привет от PC1!")
+pc3.send("PC1", "Ответ от PC3!")
+pc2.send("PC4", "PC2 здесь.")
+pc4.send("PC2", "Принято!")
 router.connect(pc3)
 router.connect(pc4)
