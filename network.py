@@ -6,24 +6,25 @@ class Packet:
 
 
 class Computer:
-    def __init__(self, name, router):
-        self.name = name
+    def __init__(self, mac, router):
+        self.mac = mac
         self.router = router
 
     def send(self, dst, data):
-        packet = Packet(self.name, dst, data)
+        packet = Packet(self.mac, dst, data)
         self.router.route(packet)
 
     def receive(self, packet):
-        print(f"Message for {self.name} from {packet.src}: {packet.data}")
+        print(f"Message for {self.mac} from {packet.src}: {packet.data}")
 
 
 class Router:
+    BROADCAST_MAC = "FF:FF:FF:FF:FF:FF"
     def __init__(self):
         self.devices = {}
 
     def connect(self, device):
-        self.devices[device.name] = device
+        self.devices[device.mac] = device
 
     def route(self, packet):
         if packet.dst in self.devices:
@@ -32,17 +33,18 @@ class Router:
             print(f"Router: destination {packet.dst} not found.")
 router = Router()
 
-pc1 = Computer("PC1", router)
-pc2 = Computer("PC2", router)
-pc3 = Computer("PC3", router)
-pc4 = Computer("PC4", router)
+pc1 = Computer("00:11:22:33:44:55", router)
+pc2 = Computer("66:77:88:99:AA:BB", router)
+pc3 = Computer("CC:DD:EE:FF:00:11", router)
+pc4 = Computer("22:33:44:55:66:77", router)
 
 router.connect(pc1)
 router.connect(pc2)
 
-pc1.send("PC3", "Привет от PC1!")
-pc3.send("PC1", "Ответ от PC3!")
-pc2.send("PC4", "PC2 здесь.")
-pc4.send("PC2", "Принято!")
+pc1.send("CC:DD:EE:FF:00:11", "Привет от PC1!")
+pc3.send("00:11:22:33:44:55", "Ответ от PC3!")
+pc2.send("22:33:44:55:66:77", "PC2 здесь.")
+pc4.send("66:77:88:99:AA:BB", "Принято!")
 router.connect(pc3)
 router.connect(pc4)
+pc1.send(Router.BROADCAST_MAC, "Всем привет от PC1!")
